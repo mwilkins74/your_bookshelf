@@ -1,17 +1,45 @@
-<%= form_with(model: book) do |form| %>
-  <% if book.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
-
-      <ul>
-        <% book.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with model: book do |form| %>
   <div>
-    <%= form.submit %>
+    <%= form.label :title %>
+    <br/>
+    <%= form.text_field :title %>
+    <% book.errors.full_messages_for(:title).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :author %>
+    <br/>
+    <%= form.text_field :author %>
+    <% book.errors.full_messages_for(:author).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <br/>
+    <%= form.text_field :description %>
+    <% book.errors.full_messages_for(:description).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :number_of_pages %>
+    <br/>
+    <%= form.number_field :number_of_pages %>
+    <% book.errors.full_messages_for(:number_of_pages).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.submit "Create Book", class: "btn btn-dark btn-sm" %>
   </div>
 <% end %>
