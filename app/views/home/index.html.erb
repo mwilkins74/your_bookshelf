@@ -1,0 +1,8 @@
+<div class="container align-items-center d-flex pt-5" style="height: 100vh; flex-direction: column;">
+  <h1 class="mt-5">Welcome to Your #{Time.now.year} Bookshelf!</h1>
+  <div class="d-flex">
+    <%= link_to "Log in", new_session_path, class: "btn btn-dark btn-lg custom-margin" %>
+    <%= link_to "Sign Up", new_registration_path, class: "btn btn-warning btn-lg custom-margin" %>
+    <% # = link_to "Back to Your Books", books_path, class: "btn btn-info btn-lg" %>
+  </div>
+</div>
