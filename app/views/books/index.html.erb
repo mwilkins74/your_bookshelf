@@ -30,7 +30,7 @@
     <% @books.each_with_index do |book, index| %>
       <tr>
         <th scope="row">
-          <%= index + 1 %> 
+          <%= ((@books.current_page - 1) * @books.limit_value) + index + 1 %>
         </th>
         <td>
           <%= book.title %>
