@@ -1,8 +1,7 @@
 class BooksController < ApplicationController
 
   def index
-    # @books = current_user.books.order("created_at ASC").page(params[:page]).per(10)
-    @books = Book.all
+    @books = current_user.books.order("created_at ASC").page(params[:page]).per(10)
     total_books_read
     number_of_pages_read
   end

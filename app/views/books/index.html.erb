@@ -27,11 +27,10 @@
     </tr>
   </thead>
   <tbody>
-    <%# <% index = @books.offset_value + 1 %>
-    <% @books.each do |book| %>
+    <% @books.each_with_index do |book, index| %>
       <tr>
         <th scope="row">
-          <%# <%= index %> 
+          <%= index + 1 %> 
         </th>
         <td>
           <%= book.title %>
@@ -64,10 +63,10 @@
           <% end %>
         </td>
       </tr>
-      <%# <% index += 1 %>
     <% end %>
   </tbody>
 </table>
-<%# <div class="pagination"> %>
-  <%# <%= paginate @books %> 
-<%# </div> %>
+
+<div class="pagination">
+  <%= paginate @books %>
+</div>

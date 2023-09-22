@@ -71,6 +71,8 @@ group :test do
   gem "webdrivers"
 end
 
+gem 'jquery-rails'
+
 gem 'bcrypt'
 gem 'sassc'
 gem 'bootstrap', '~> 5.0.0'
