@@ -21,8 +21,15 @@ class SessionsController < ApplicationController
   def welcome
   end
 
+  # def destroy
+  #   session.delete :user_id
+  #   redirect_to root_path, flash: { success: "Logged Out" }
+  # end
+
   def destroy
     session.delete :user_id
-    redirect_to root_path, flash: { success: "Logged Out" }
+    flash[:success] = "Logged Out"
+    render 'sessions/new'
   end
+  
 end

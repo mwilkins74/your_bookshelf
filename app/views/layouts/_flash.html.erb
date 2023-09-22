@@ -3,3 +3,18 @@
     <%= msg %>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    // Select the flash message with the "alert" class
+    var flashMessage = $('.alert');
+
+    // Set a timeout to fade out the flash message after 5 seconds
+    setTimeout(function() {
+      flashMessage.fadeOut('slow', function() {
+        // After fading out, remove the flash message from the DOM
+        flashMessage.remove();
+      });
+    }, 5000); // 5000 milliseconds (5 seconds)
+  });
+</script>
