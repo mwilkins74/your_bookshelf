@@ -1,0 +1,74 @@
+@import 'bootstrap';
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Adjust the spacing between pagination and the content above */
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 10px; /* Adjust the spacing between pagination links */
+  background-color: #f0f0f0; /* Change to your preferred background color */
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333; /* Change to your preferred text color */
+}
+
+.pagination .active {
+  background-color: #007bff; /* Change to your preferred active link color */
+  color: #fff; /* Change to your preferred text color for active link */
+}
+
+.pagination .disabled {
+  opacity: 0.6; /* Reduce opacity for disabled links */
+  cursor: not-allowed;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+  }
+  .h-custom {
+  height: calc(100% - 73px);
+  }
+  @media (max-width: 450px) {
+  .h-custom {
+  height: 100%;
+  }
+}
+
+.custom-margin {
+  margin-right: 10px;
+}
+
+// For desktop-sized screens and larger
+@media (min-width: 992px) {
+  .book-link {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+// For medium-sized screens and smaller
+@media (max-width: 991px) {
+  .book-link {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+
+
+
+
+

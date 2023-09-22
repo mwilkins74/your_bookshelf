@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= root_path %>">Your Bookshelf for #{Time.now.year}</a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler mb-2" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto text-end">
+        <li class="nav-item">
+          <%= link_to user_profile_path, class: 'btn btn-dark' do %>
+            <i class="bi bi-person-fill"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to books_path, class: 'btn btn-warning book-link' do %>
+            <i class="bi bi-book-half"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= form_with(url: session_path(@current_user), method: :delete, data: { confirm: "Are you sure you want to log out?" }) do |f| %>
+            <%= button_tag type: :submit, class: 'btn btn-danger' do %>
+              <i class="bi bi-box-arrow-right"></i>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
