@@ -72,4 +72,11 @@ group :test do
 end
 
 gem 'bcrypt'
+gem 'sassc'
+gem 'bootstrap', '~> 5.0.0'
+gem 'kaminari'
+gem 'trestle'
+
+gem "view_component"
+gem 'dry-initializer', '~> 3.1', '>= 3.1.1'
 
