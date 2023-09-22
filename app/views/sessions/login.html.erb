@@ -1,0 +1,16 @@
+<div class="text-center">
+  <h1>Sign In</h1>
+  <%= form_with(model: @user, url: new_session_path, local: true) do |f| %>
+    <div class="row">
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: 'Please enter email id' %>
+    </div>
+    <div class="row">
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: 'Please enter password' %>
+    </div>
+    <div class="row">
+      <%= f.submit 'Sign In' %>
+    </div>
+  <% end %>
+</div>
