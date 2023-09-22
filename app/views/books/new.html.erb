@@ -1,9 +1,42 @@
-<h1>New book</h1>
-
-<%= render "form", book: @book %>
-
-<br>
-
-<div>
-  <%= link_to "Back to books", books_path %>
-</div>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-4">
+        <div class="container my-form-container">
+          <%= form_with(model: @book, url: books_path, local: true, html: { class: "form-border border p-3 border-dark" }) do |form| %>
+            <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
+            <div class="form-outline mb-4">
+              <label class="form-label fw-bold" for="book_title">Title</label>
+              <%= form.text_field :title, class: "form-control form-control-lg", placeholder: "Title..." %>
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label fw-bold" for="book_author">Author</label>
+              <%= form.text_field :author, class: "form-control form-control-lg", placeholder: "Author..." %>
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label fw-bold" for="book_description">Description</label>
+              <%= form.text_area :description, class: "form-control form-control-lg", placeholder: "Description..." %>
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label fw-bold" for="book_number_of_pages">Number of Pages</label>
+              <%= form.number_field :number_of_pages, class: "form-control form-control-lg", placeholder: "Number of pages..." %>
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label fw-bold" for="book_started_date">Started Date</label>
+              <%= form.date_field :started_date, class: "form-control form-control-lg", value: @book.started_date&.strftime("%Y-%m-%d") %>
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label fw-bold" for="book_finished_date">Finished Date</label>
+              <%= form.date_field :finished_date, class: "form-control form-control-lg", value: @book.finished_date&.strftime("%Y-%m-%d") %>
+            </div>
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button class="btn btn-warning btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem; display: block; margin: 0 auto;" type="submit">
+                Create Book
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

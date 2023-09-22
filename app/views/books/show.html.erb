@@ -1,10 +1,41 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @book %>
-
-<div>
-  <%= link_to "Edit this book", edit_book_path(@book) %> |
-  <%= link_to "Back to books", books_path %>
-
-  <%= button_to "Destroy this book", @book, method: :delete %>
+<p id="notice">
+  <%= notice %>
+</p>
+<h4>
+  <%= "Book ##{@book.id}" %>
+</h4>
+<h5 class="pt-3">
+  <div class="pt-3 fw-bold">Title:</div>
+  <%= @book.title %>
+</h5>
+<h5 class="pt-3">
+  <h5 class="fw-bold">Author:</h5>
+  <%= @book.author %>
+</h5>
+<h5 class="pt-3">
+  <h5 class="fw-bold">Description:</h5>
+  <%= @book.description %>
+</h5>
+<h5 class="pt-3">
+  <h5 class="fw-bold">Number of Pages:</h5>
+  <%= @book.number_of_pages %>
+</h5>
+<h5 class="pt-3">
+  <h5 class="fw-bold">Started Reading:</h5>
+  <%= @book.formatted_started_date %>
+</h5>
+<h5 class="pt-3">
+  <h5 class="fw-bold">Finished Reading:</h5>
+  <%= @book.formatted_finished_date %>
+</h5>
+<h5 class="py-3">
+  It took you #{@book.calculate_duration} days to read this book
+</h5>
+<div class="d-flex">
+  <%= link_to edit_book_path(@book), class: "btn btn-secondary me-2" do %>
+    <i class="bi bi-pencil-fill"></i>
+  <% end %>
+  <%= link_to books_path, class: 'btn btn-warning' do %>
+    <i class="bi bi-book-half"></i>
+  <% end %>
 </div>
