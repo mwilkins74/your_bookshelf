@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :registrations, only: [:new,:create]
   resources :sessions, only: [:new, :create, :destroy]
 
-  get '/login', to: 'sessions#new', as: 'login'
-
   get "welcome", to: "sessions#welcome"
   # get "authorized", to: "sessions#page_requires_login"
   

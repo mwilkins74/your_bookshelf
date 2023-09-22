@@ -1,12 +1,33 @@
-<%= form_for @user, url: registrations_path do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.submit "Sign Up" %>
-<% end %>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-4">
+        <div class="container my-form-container">
+          <%= form_with(model: @user, url: users_path, local: true, html: { class: "form-border border p-3 border-dark" }) do |f| %>
+            <!-- Add CSRF token -->
+            <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
+            <!-- Username input -->
+            <div class="form-outline mb-4">
+              <%= f.text_field :username, class: "form-control form-control-lg", placeholder: "Username..." %>
+              <label class="form-label" for="user_username">Username</label>
+            </div>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <%= f.email_field :email, class: "form-control form-control-lg", placeholder: "Email..." %>
+              <label class="form-label" for="user_email">Email address</label>
+            </div>
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <%= f.password_field :password, class: "form-control form-control-lg", placeholder: "Password..." %>
+              <label class="form-label" for="user_password">Password</label>
+            </div>
+            <!-- Center the Sign Up button -->
+            <div class="text-center">
+              <button class="btn btn-warning btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" type="submit">Sign Up</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
