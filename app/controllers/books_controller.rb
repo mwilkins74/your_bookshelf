@@ -3,17 +3,16 @@ class BooksController < ApplicationController
   def index
     @years_collection = current_user.books.pluck(:finished_date).map { |date| date&.year }.compact.uniq.sort.reverse
     @selected_year = params[:year].to_i if params[:year].present?
-  
+    
     @books = current_user.books.order("created_at ASC")
-  
+    
     if @selected_year.present?
       @books = @books.where("strftime('%Y', finished_date) = ?", @selected_year.to_s)
     end
-  
+    
     @books = @books.page(params[:page]).per(10)
-  
-    total_books_read
-    number_of_pages_read
+    
+    calculate_totals
   end
 
   def show
@@ -62,26 +61,36 @@ class BooksController < ApplicationController
   end
 
   private
-    def book_params
-      params.require(:book).permit(
-        :title,
-        :author,
-        :description,
-        :number_of_pages,
-        :started_date,
-        :finished_date
-      ).merge(user_id: current_user.id)
-    end
+  def book_params
+    params.require(:book).permit(
+      :title,
+      :author,
+      :description,
+      :number_of_pages,
+      :started_date,
+      :finished_date
+    ).merge(user_id: current_user.id)
+  end
 
-    def find_book
-      Book.find(params[:id])
-    end
+  def find_book
+    Book.find(params[:id])
+  end
 
-    def total_books_read
-      @total_books_read = Book.count if @books.present?
-    end
+  def total_books_read
+    @total_books_read = Book.count if @books.present?
+  end
 
-    def number_of_pages_read
-      @number_of_pages_read = Book.sum(:number_of_pages) if @books.present?
+  def number_of_pages_read
+    @number_of_pages_read = Book.sum(:number_of_pages) if @books.present?
+  end
+
+  def calculate_totals
+    if @books.present?
+      @total_books_read = @books.total_count
+      @number_of_pages_read = current_user.books.where("strftime('%Y', finished_date) = ?", @selected_year.to_s).sum(:number_of_pages)
+    else
+      @total_books_read = 0
+      @number_of_pages_read = 0
     end
+  end
 end
