@@ -1,7 +1,17 @@
 class BooksController < ApplicationController
 
   def index
-    @books = current_user.books.order("created_at ASC").page(params[:page]).per(10)
+    @years_collection = current_user.books.pluck(:finished_date).map { |date| date&.year }.compact.uniq.sort.reverse
+    @selected_year = params[:year].to_i if params[:year].present?
+  
+    @books = current_user.books.order("created_at ASC")
+  
+    if @selected_year.present?
+      @books = @books.where("strftime('%Y', finished_date) = ?", @selected_year.to_s)
+    end
+  
+    @books = @books.page(params[:page]).per(10)
+  
     total_books_read
     number_of_pages_read
   end
