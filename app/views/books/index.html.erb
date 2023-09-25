@@ -1,11 +1,11 @@
 <h1>
   Welcome <%= current_user.username %>!
 </h1>
-<h1 class="text-decoration-underline">
-  Books Read in <%= Time.now.year %>
+<h1 class="text-decoration-underline" id="year-heading">
+  Books Read in <%= @selected_year || Time.now.year %>
 </h1>
 <div class="d-grid gap-2 col-3">
-  <%= link_to new_book_path, class: "btn btn-warning btn-block fw-bold" do %>
+  <%= link_to new_book_path, class: "btn btn-warning btn-block fw-bold", style: "width: 137%;" do %>
     <i class="bi bi-plus-circle-fill me-2"></i>
     New Book
   <% end %>
@@ -17,10 +17,15 @@
 <h5 class="mb-5">
   Number of Pages Read: <%= @number_of_pages_read %>
 </h5>
-<div class="form-group" style="margin-bottom: 20px;">
+<%# YEAR DROPDOWN %>
+<div class="form-group row" style="margin-bottom: 20px;">
   <%= form_tag(books_path, method: "get", class: "form-inline") do %>
-    <%= select_tag :year, options_for_select(@years_collection, params[:year]), class: "form-control", style: "max-width: 150px;" %>
-    <%= submit_tag "Select Year", class: "btn btn-secondary" %>
+    <div class="col-6">
+      <%= select_tag :year, options_for_select(@years_collection.map(&:to_s), @selected_year.to_s), class: "form-control", style: "max-width: 22%;", id: "year-dropdown" %>
+    </div>
+    <div class="col-6">
+      <%= submit_tag "Select Year", class: "btn btn-dark btn-block" %>
+    </div>
   <% end %>
 </div>
 <table class="table table-striped table-bordered">
@@ -76,3 +81,17 @@
 <div class="pagination">
   <%= paginate @books %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const yearDropdown = document.getElementById("year");
+    const yearHeading = document.getElementById("year-heading");
+
+    yearDropdown.addEventListener("change", function() {
+      const selectedYear = yearDropdown.value;
+      yearHeading.innerHTML = `Books Read in ${selectedYear}`;
+    });
+  });
+</script>
+
+q
