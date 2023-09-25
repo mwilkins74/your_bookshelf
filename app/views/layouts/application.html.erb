@@ -14,7 +14,7 @@
 </head>
 <body>
   <%= render 'layouts/flash' %>
-  <% if logged_in? %>
+  <% if user_logged_in? %>
     <%= render(NavbarComponent.new(logged_in: true, current_user: current_user)) %>
   <% end %>
 
